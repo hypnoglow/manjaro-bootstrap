@@ -1,0 +1,179 @@
+#!/bin/bash
+
+print_usage() {
+    cat <<EOF
+Usage:
+    $_CALLER [-k] <profile>
+    $_CALLER [-k] {default,vm,job,laptop}
+
+-k|--pacman-keys        Update pacman keys. This should be used if you have just
+                        installed Manjaro using quite old ISO image or if  you
+                        are experiencing problems with system update because of
+                        broken GPG keys.
+-h|--help               Show help.
+<profile>               Workstation profile, affects some tweaks and set of
+                        custom packages. Available profiles:
+                            default - normal machine,
+                            vm      - virtual machine,
+                            job     - self-explanatory,
+                            laptop  - self-explanatory.
+
+$_SELF version $_VERSION
+EOF
+}
+
+preload() {
+    declare -g self_dir
+    self_dir="$(dirname "$(readlink -e "${BASH_SOURCE[0]}")")"
+
+    . "${self_dir}/lib/std.sh"
+    _SELF="manjaro-bootstrap"
+    _VERSION="0.1.0"
+
+    . "${self_dir}/lib/ask.sh"
+
+    . "${self_dir}/scripts/apps.sh"
+    . "${self_dir}/scripts/keyboard.sh"
+    . "${self_dir}/scripts/locale.sh"
+    . "${self_dir}/scripts/packages.sh"
+    . "${self_dir}/scripts/pacman.sh"
+    . "${self_dir}/scripts/tweaks.sh"
+}
+
+parse_arguments() {
+    declare -g arg_update_keys=false
+    declare -g arg_profile=""
+
+    while [[ $# > 0 ]] ; do
+        case $1 in
+            -h|--help)
+                print_usage
+                exit 0
+            ;;
+            -k|--pacman-keys)
+                arg_update_keys=true
+            ;;
+            -*)
+                std::error "Unknown argument: $1"
+                print_usage
+                exit 1
+            ;;
+            default|vm|job|laptop)
+                arg_profile=$1
+                break
+            ;;
+            d)
+                arg_profile="default"
+                break
+            ;;
+            v)
+                arg_profile="vm"
+                break
+            ;;
+            j)
+                arg_profile="job"
+                break
+            ;;
+            l)
+                arg_profile="laptop"
+                break
+            ;;
+            *)
+                std::error "Unknown workstation profile."
+                print_usage
+                exit 1
+            ;;
+        esac
+        shift
+    done
+
+    if [ -z "${arg_profile}" ] ; then
+        std::error "Workstation profile is not specified."
+        print_usage
+        exit 1
+    fi
+
+    # TODO: save profile to ${WS_PROFILE} ?
+}
+
+check_new_configs_after_update() {
+    if [ -z "$(which icdiff 2>/dev/null)" ]; then
+        std::warning "Package ${_COLOR_BROWN}icdiff${_COLOR_RESET} not found."
+        std::warning "Cannot check possible new configs."
+        return 0
+    fi
+
+    local new_config
+    local old_config
+    local new_configs=$(find /etc/ ! -readable -prune -o -type f \
+        -name "*.pacnew" -print)
+
+    for new_config in ${new_configs} ; do
+        old_config=${new_config%*.pacnew}
+
+        echo "Config ${old_config} is being changed because of package update!"
+        echo "##### Running DIFF BETWEEN ${old_config} & ${new_config} #####"
+        echo "[Press 'q' to skip or any other key to continue...]"
+        read -s -n1 key
+        if [ "${key}" = "q" ]; then
+            continue;
+        fi
+
+        icdiff $old_config $new_config | less -R
+
+        if ask::interactive "Replace old config with the new one?"; then
+            sudo mv "${old_config}" "${old_config}.bak"
+            sudo mv "${new_config}" "${old_config}"
+        elif ask::interactive "Remove new config?"; then
+            sudo mv "${new_config}" "${new_config}.bak"
+        fi
+    done
+}
+
+main() {
+    preload
+    parse_arguments "$@"
+
+    std::info "Bootstrap profile: ${_COLOR_YELLOW}${arg_profile}${_COLOR_RESET}"
+
+    # First of all, update system.
+    # Watch over the output - there may be needs to manually update config files
+    # (like when you see "/etc/foo.conf is installed as /etc/foo.conf.pacnew").
+    # This script handles such situations after update is done,
+    # but you should carefully overview the diff between changed configs
+    # to merge them properly.
+
+    if [ ${arg_update_keys} = true ]; then
+        pacman::update_keys
+    fi
+
+    pacman::set_color
+    pacman::update_mirrors
+    pacman::update_system
+
+    # Afterwards, install packages
+
+    packages::install_all "${arg_profile}"
+
+    # Next, do some system tweaks
+
+    check_new_configs_after_update
+
+    locale::set
+    keyboard::set
+    tweaks::increase_inotify
+    tweaks::switch_to_zsh
+    tweaks::gtk_themes
+
+    # Install additional software (not from arch repos)
+
+    apps::nodejs-n
+    apps::mongodb
+    apps::phpstorm
+
+    std::info "Done bootstrapping!"
+    std::info "Now you may want to install your dotfiles if you haven't done it yet."
+}
+
+main "$@"
+exit 0

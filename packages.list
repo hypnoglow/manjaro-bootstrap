@@ -1,0 +1,57 @@
+### Basic ###
+*       bash-completion
+*       xkb-switch-git              aur
+*       zsh
+*       zsh-completions
+*       feh
+*       vim
+*       xclip
+
+*       urxvt-autocomplete-all-the-things-git    aur
+
+### Development ###
+*       go
+*       go-tools
+!vm     atom-editor                 aur
+vm      atom-editor-bin             aur
+*       jq
+*       cdiff                       aur
+*       icdiff                      aur
+*       shellcheck
+
+### Web ###
+*       google-chrome               aur
+*       firefox
+!vm     vivaldi                     aur
+!vm     vivaldi-ffmpeg-codecs       aur
+!vm     dropbox
+!vm     dropbox-cli                 aur
+
+
+### Screenshot tools ##
+maim
+slop
+
+### Communication ###
+!vm     thunderbird
+!vm     psi
+!vm     psi-i18n
+!vm     telegram-desktop-bin        aur
+job     skype
+
+# GTK
+gnome-themes-standard
+arc-themes
+
+vertex-maia-themes
+vertex-maia-icon-theme
+xcursor-maia
+
+### Fonts ###
+*       xorg-xlsfonts
+*       xorg-xfontsel
+*       adobe-source-code-pro-fonts
+*       adobe-source-sans-pro-fonts
+*       ttf-iosevka                 aur
+*       ttf-iosevka-term            aur
+*       tamzen-font-git             aur
