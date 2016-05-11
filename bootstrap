@@ -44,7 +44,7 @@ parse_arguments() {
     declare -g arg_update_keys=false
     declare -g arg_profile=""
 
-    while [[ $# > 0 ]] ; do
+    while [[ $# -gt 0 ]] ; do
         case $1 in
             -h|--help)
                 print_usage
@@ -163,6 +163,7 @@ main() {
     keyboard::set
     tweaks::increase_inotify
     tweaks::switch_to_zsh
+    tweaks::setup_lightdm_theme
 
     sudo gpasswd --add ${USER} docker
 

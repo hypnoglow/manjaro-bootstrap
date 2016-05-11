@@ -48,6 +48,9 @@ vertex-maia-themes
 vertex-maia-icon-theme
 xcursor-maia
 
+# LightDM
+!vm lightdm-webkit-theme-material-git
+
 ### Fonts ###
 *       xorg-xlsfonts
 *       xorg-xfontsel
