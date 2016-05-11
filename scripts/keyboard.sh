@@ -18,9 +18,10 @@ keyboard::set() {
 
 keyboard::need() {
     # Remove junk in /etc/X11/xorg.conf.d/90-mhwd.conf
-    local mhwd_file="/etc/X11/xorg.conf.d/90-mhwd.conf"
+    local mhwd_file="$(readlink -e "/etc/X11/xorg.conf.d/90-mhwd.conf")"
     if [ "$(grep -c "Section \"InputClass\"" ${mhwd_file})" = "1" ]
     then
+        std::info "Remove keyboard section in /etc/X11/xorg.conf.d/90-mhwd.conf"
         local grepFrom=$(grep -n "Section \"InputClass\"" /etc/X11/xorg.conf.d/90-mhwd.conf)
         local from=${grepFrom%*:*}
         local grepTo=$(cat /etc/X11/xorg.conf.d/90-mhwd.conf | grep -n "EndSection" | tail -n1)
