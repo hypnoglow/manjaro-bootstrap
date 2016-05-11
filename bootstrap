@@ -163,13 +163,16 @@ main() {
     keyboard::set
     tweaks::increase_inotify
     tweaks::switch_to_zsh
-    tweaks::gtk_themes
+
+    # It's a bit broken now, so skip
+    #tweaks::gtk_themes
 
     # Install additional software (not from arch repos)
 
     apps::nodejs-n
     apps::mongodb
     apps::phpstorm
+    apps::php56
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."

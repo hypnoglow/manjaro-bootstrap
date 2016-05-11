@@ -51,3 +51,24 @@ apps::phpstorm() {
     mv PhpStorm-10.0.3 ~/apps/
     ln -s ~/apps/PhpStorm-10.0.3/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
+
+apps::php56() {
+    if [ -x "$(which php56 2>/dev/null)" ]; then
+        return 0
+    fi
+
+    if ! ask::interactive "Install PHP 5.6 ?"; then
+         return 0
+    fi
+
+    cd /tmp
+    wget http://at1.php.net/get/php-5.6.21.tar.bz2/from/this/mirror -O php-5.6.21.tar.bz2
+    tar xjf php-5.6.21.tar.bz2
+    cd php-5.6.21
+    ./configure --enable-fpm --with-mysql --prefix=${HOME}/apps/php-5.6.21
+    make install
+
+    cp /tmp/php-5.6.21/php.ini-development ~/apps/php-5.6.21/lib/php.ini
+
+    ln -s ~/apps/php-5.6.21/bin/php ~/apps/bin/php56
+}
