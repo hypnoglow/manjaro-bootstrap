@@ -18,6 +18,7 @@ vm      atom-editor-bin             aur
 *       cdiff                       aur
 *       icdiff                      aur
 *       shellcheck
+*       docker
 
 ### Web ###
 *       google-chrome               aur
