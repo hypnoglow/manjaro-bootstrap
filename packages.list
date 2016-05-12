@@ -49,7 +49,7 @@ vertex-maia-icon-theme
 xcursor-maia
 
 # LightDM
-!vm lightdm-webkit-theme-material-git
+!vm lightdm-webkit-theme-material-git    aur
 
 ### Fonts ###
 *       xorg-xlsfonts

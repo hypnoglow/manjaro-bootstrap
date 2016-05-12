@@ -53,3 +53,25 @@ tweaks::setup_lightdm_theme() {
         echo "Icon=/var/lib/AccountsService/icons/${USER}" | sudo tee -a /var/lib/AccountsService/users/hypnoglow 1>/dev/null
     fi
 }
+
+tweaks::setup_docker() {
+    if ! groups ${USER} | grep -q docker ; then
+        sudo gpasswd --add ${USER} docker
+    fi
+
+    if [ "${arg_profile}" != "job" ] ; then
+        return 0
+    fi
+
+    if [ -f "/etc/systemd/system/docker.service.d/ngs.conf" ] ; then
+        return 0
+    fi
+
+    std::info "Setup docker"
+    sudo mkdir -p /etc/systemd/system/docker.service.d/
+    sudo cp ${self_dir}/sources/etc/systemd/system/docker.service.d/ngs.conf \
+            /etc/systemd/system/docker.service.d/ngs.conf
+
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+}

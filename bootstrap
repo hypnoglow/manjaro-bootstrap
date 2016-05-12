@@ -164,8 +164,7 @@ main() {
     tweaks::increase_inotify
     tweaks::switch_to_zsh
     tweaks::setup_lightdm_theme
-
-    sudo gpasswd --add ${USER} docker
+    tweaks::setup_docker
 
     # It's a bit broken now, so skip
     #tweaks::gtk_themes
