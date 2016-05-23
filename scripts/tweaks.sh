@@ -75,3 +75,23 @@ tweaks::setup_docker() {
     sudo systemctl daemon-reload
     sudo systemctl restart docker
 }
+
+tweaks::disable_servises() {
+    local -a services=(
+        bluetooth.service
+        ModemManager.service
+        dbus-org.freedesktop.ModemManager1.service
+    )
+
+    for service in "${services[@]}" ; do
+        if systemctl -q is-enabled ${service} ; then
+            std::info "Disabling service ${service}"
+            if systemctl -q is-active ${service} ; then
+                sudo systemctl stop ${service}
+            fi
+            sudo systemctl disable ${service}
+        fi
+    done
+
+
+}

@@ -161,6 +161,8 @@ main() {
 
     locale::set
     keyboard::set
+
+    tweaks::disable_servises
     tweaks::increase_inotify
     tweaks::switch_to_zsh
     tweaks::setup_lightdm_theme
