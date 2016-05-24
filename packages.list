@@ -59,3 +59,5 @@ xcursor-maia
 *       ttf-iosevka                 aur
 *       ttf-iosevka-term            aur
 *       tamzen-font-git             aur
+# FontAwesome for i3bar icons
+*       ttf-font-awesome
