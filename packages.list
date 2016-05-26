@@ -6,8 +6,11 @@
 *       feh
 *       vim
 *       xclip
+*       tmux
 
 *       urxvt-autocomplete-all-the-things-git    aur
+
+*       xdotool
 
 ### Development ###
 *       go
@@ -29,9 +32,11 @@ vm      atom-editor-bin             aur
 !vm     dropbox-cli                 aur
 
 
-### Screenshot tools ##
+### Screenshot and gif tools ##
 maim
 slop
+gifsicle
+ffcast                              aur
 
 ### Communication ###
 !vm     thunderbird
