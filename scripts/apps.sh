@@ -41,15 +41,18 @@ apps::phpstorm() {
         return 0
     fi
 
-    if ! ask::interactive "Install PhpStorm 10.0.3 ?"; then
+    local version="2016.1.2"
+
+    if ! ask::interactive "Install PhpStorm ${version} ?"; then
          return 0
     fi
 
-    cd Downloads
-    wget http://download.jetbrains.com/webide/PhpStorm-10.0.3.tar.gz
-    tar xzf PhpStorm-10.0.3.tar.gz
-    mv PhpStorm-10.0.3 ~/apps/
-    ln -s ~/apps/PhpStorm-10.0.3/bin/phpstorm.sh ~/apps/bin/phpstorm
+    cd ${HOME}/Downloads
+    wget https://download.jetbrains.com/webide/PhpStorm-${version}.tar.gz
+
+    tar xzf PhpStorm-${version}.tar.gz
+    mv PhpStorm-${version} ~/apps/
+    ln -s ~/apps/PhpStorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
 apps::php56() {
