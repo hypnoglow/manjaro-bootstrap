@@ -93,7 +93,12 @@ parse_arguments() {
         exit 1
     fi
 
-    # TODO: save profile to ${WS_PROFILE} ?
+    ws_profile_path="/etc/profile.d/ws_profile.sh"
+    if [ ! -r "${ws_profile_path}" ] || [ "$(head -n1 ${ws_profile_path})" != "WS_PROFILE=${arg_profile}" ]; then
+        std::info "Saving WS_PROFILE to ${ws_profile_path}"
+        echo -e "WS_PROFILE=${arg_profile}\nexport WS_PROFILE" | sudo tee ${ws_profile_path} 1>/dev/null
+        sudo chmod 755 ${ws_profile_path}
+    fi
 }
 
 check_new_configs_after_update() {
