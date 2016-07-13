@@ -26,8 +26,8 @@ vm      atom-editor-bin             aur
 ### Web ###
 *       google-chrome               aur
 *       firefox
-!vm     vivaldi                     aur
-!vm     vivaldi-ffmpeg-codecs       aur
+job     vivaldi                     aur
+job     vivaldi-ffmpeg-codecs       aur
 !vm     dropbox
 !vm     dropbox-cli                 aur
 
@@ -39,10 +39,10 @@ gifsicle
 ffcast                              aur
 
 ### Communication ###
-!vm     thunderbird
-!vm     psi
-!vm     psi-i18n
-!vm     telegram-desktop-bin        aur
+job     thunderbird
+job     psi
+job     psi-i18n
+job     telegram-desktop-bin        aur
 job     skype
 
 # GTK
@@ -54,6 +54,7 @@ vertex-maia-icon-theme
 xcursor-maia
 
 # LightDM
+!vm lightdm-webkit2-greeter              aur
 !vm lightdm-webkit-theme-material-git    aur
 
 ### Fonts ###
@@ -65,4 +66,4 @@ xcursor-maia
 *       ttf-iosevka-term            aur
 *       tamzen-font-git             aur
 # FontAwesome for i3bar icons
-*       ttf-font-awesome
+*       ttf-font-awesome            aur
