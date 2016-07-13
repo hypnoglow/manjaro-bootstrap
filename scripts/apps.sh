@@ -36,6 +36,21 @@ apps::mongodb() {
     ln -s ~/apps/mongodb-linux-x86_64-3.2.4/bin/mongo ~/apps/bin/mongo
 }
 
+apps::realsync() {
+    if [ -x "$(which realsync 2>/dev/null)" ]; then
+        return 0
+    fi
+
+    if ! ask::interactive "Install realsync ?"; then
+         return 0
+    fi
+
+    git clone https://github.com/DmitryKoterov/dklab_realsync.git /tmp/realsync
+    sudo mkdir -p /opt/dklab/
+    sudo mv /tmp/realsync /opt/dklab
+    sudo ln -s /opt/dklab/realsync/realsync /usr/local/bin/realsync
+}
+
 apps::phpstorm() {
     if [ -x "$(which phpstorm 2>/dev/null)" ]; then
         return 0
