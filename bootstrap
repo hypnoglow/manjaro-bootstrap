@@ -13,7 +13,8 @@ Usage:
 -h|--help               Show help.
 <profile>               Workstation profile, affects some tweaks and set of
                         custom packages. Available profiles:
-                            default - normal machine,
+                            default - basic stuff
+                            desktop - main workstation,
                             vm      - virtual machine,
                             job     - self-explanatory,
                             laptop  - self-explanatory.
@@ -58,12 +59,12 @@ parse_arguments() {
                 print_usage
                 exit 1
             ;;
-            default|vm|job|laptop)
+            default|vm|job|laptop|desktop)
                 arg_profile=$1
                 break
             ;;
             d)
-                arg_profile="default"
+                arg_profile="desktop"
                 break
             ;;
             v)
@@ -178,6 +179,7 @@ main() {
 
     # Install additional software (not from arch repos)
 
+    mkdir -p "${HOME}/apps/bin"
     apps::nodejs-n
     apps::mongodb
     apps::phpstorm

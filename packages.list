@@ -16,7 +16,7 @@
 *       go
 *       go-tools
 !vm     atom-editor                 aur
-vm      atom-editor-bin             aur
+#!job    atom-editor-beta-bin        aur
 *       jq
 *       cdiff                       aur
 *       icdiff                      aur
@@ -44,12 +44,13 @@ job     psi
 job     psi-i18n
 job     telegram-desktop-bin        aur
 job     skype
+job     slack-desktop               aur
+desktop slack-desktop               aur
 
 # GTK
 gnome-themes-standard
 arc-themes
 
-vertex-maia-themes
 vertex-maia-icon-theme
 xcursor-maia
 
