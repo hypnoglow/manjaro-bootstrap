@@ -13,7 +13,7 @@ apps::nodejs-n() {
     fi
 
     echo "Installing node.js-n"
-    git clone git@github.com:tj/n.git ${HOME}/sources/tj/n
+    git clone https://github.com/tj/n ${HOME}/sources/tj/n
     cd ${HOME}/sources/tj/n
     PREFIX=${HOME}/apps/n make install
 }
@@ -62,12 +62,15 @@ apps::phpstorm() {
          return 0
     fi
 
+    ts=$(date +"%s")
+    dir="/tmp/phpstorm-$ts"
+    mkdir $dir
     cd ${HOME}/Downloads
     wget https://download.jetbrains.com/webide/PhpStorm-${version}.tar.gz
-
-    tar xzf PhpStorm-${version}.tar.gz
-    mv PhpStorm-${version} ~/apps/
-    ln -s ~/apps/PhpStorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
+    tar xzf PhpStorm-${version}.tar.gz -C $dir
+    phpstorm_dir="$dir/$(ls $dir)"
+    mv ${phpstorm_dir}  ~/apps/phpstorm-${version}
+    ln -s ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
 apps::php56() {
