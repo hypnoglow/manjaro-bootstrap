@@ -185,6 +185,9 @@ main() {
     apps::phpstorm
     apps::php56
 
+    # Make some dirs
+    mkdir "${HOME}/Screenshots"
+
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."
 }

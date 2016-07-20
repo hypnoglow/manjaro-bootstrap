@@ -33,16 +33,17 @@ job     vivaldi-ffmpeg-codecs       aur
 
 
 ### Screenshot and gif tools ##
-maim
-slop
-gifsicle
-ffcast                              aur
+*       maim
+*       slop
+*       gifsicle
+*       ffcast                      aur
 
 ### Communication ###
 job     thunderbird
 job     psi
 job     psi-i18n
 job     telegram-desktop-bin        aur
+desktop telegram-desktop-bin        aur
 job     skype
 job     slack-desktop               aur
 desktop slack-desktop               aur
