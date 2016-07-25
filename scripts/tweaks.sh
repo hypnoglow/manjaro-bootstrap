@@ -83,7 +83,6 @@ tweaks::disable_servises() {
     local -a services=(
         bluetooth.service
         ModemManager.service
-        dbus-org.freedesktop.ModemManager1.service
     )
 
     for service in "${services[@]}" ; do
