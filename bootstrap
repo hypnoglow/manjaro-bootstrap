@@ -186,7 +186,7 @@ main() {
     apps::php56
 
     # Make some dirs
-    mkdir "${HOME}/Screenshots"
+    mkdir -p "${HOME}/Screenshots"
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."
