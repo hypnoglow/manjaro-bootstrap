@@ -127,7 +127,15 @@ check_new_configs_after_update() {
 
         icdiff $old_config $new_config | less -R
 
-        if ask::interactive "Replace old config with the new one?"; then
+        if [ -x "$(which merge-file 2>/dev/null)" ] && ask::interactive "Merge configs?"; then
+            sudo merge-file "${old_config}" "${new_config}" "${old_config}.merged"
+            sudo -E vim "${old_config}.merged"
+            if ask::interactive "Approve merge?"; then
+                sudo mv "${old_config}" "${old_config}.bak"
+                sudo mv "${new_config}" "${new_config}.bak"
+                sudo mv "${old_config}.merged" "${old_config}"
+            fi
+        elif ask::interactive "Replace old config with the new one?"; then
             sudo mv "${old_config}" "${old_config}.bak"
             sudo mv "${new_config}" "${old_config}"
         elif ask::interactive "Remove new config?"; then
