@@ -16,7 +16,8 @@
 *       go
 *       go-tools
 !vm     atom-editor                 aur
-#!job    atom-editor-beta-bin        aur
+job     atom-editor-bin             aur
+desktop atom-editor-bin             aur
 *       jq
 *       cdiff                       aur
 *       icdiff                      aur
