@@ -56,7 +56,7 @@ apps::phpstorm() {
         return 0
     fi
 
-    local version="2016.1.2"
+    local version="2016.2"
 
     if ! ask::interactive "Install PhpStorm ${version} ?"; then
          return 0

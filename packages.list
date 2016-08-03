@@ -12,6 +12,10 @@
 
 *       xdotool
 
+# i3 specific packages
+*       i3blocks                    aur
+*       sysstat
+
 ### Development ###
 *       go
 *       go-tools
