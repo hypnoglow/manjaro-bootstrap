@@ -7,10 +7,15 @@
 *       vim
 *       xclip
 *       tmux
-
 *       urxvt-autocomplete-all-the-things-git    aur
-
 *       xdotool
+*       jq
+*       cdiff                       aur
+*       icdiff                      aur
+
+# Utils
+*       siege
+*       keybase-bin                 aur
 
 # i3 specific packages
 *       i3blocks                    aur
@@ -19,12 +24,7 @@
 ### Development ###
 *       go
 *       go-tools
-!vm     atom-editor                 aur
-job     atom-editor-bin             aur
-desktop atom-editor-bin             aur
-*       jq
-*       cdiff                       aur
-*       icdiff                      aur
+*       atom-editor-bin             aur
 *       shellcheck
 *       docker
 
