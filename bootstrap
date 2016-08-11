@@ -195,6 +195,7 @@ main() {
 
     # Make some dirs
     mkdir -p "${HOME}/Screenshots"
+    mkdir -p "${HOME}/go"
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."

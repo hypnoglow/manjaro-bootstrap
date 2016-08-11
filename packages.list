@@ -12,6 +12,7 @@
 *       jq
 *       cdiff                       aur
 *       icdiff                      aur
+*       brandr
 
 # Utils
 *       siege
@@ -49,7 +50,7 @@ job     psi
 job     psi-i18n
 job     telegram-desktop-bin        aur
 desktop telegram-desktop-bin        aur
-job     skype
+#job     skype
 job     slack-desktop               aur
 desktop slack-desktop               aur
 
