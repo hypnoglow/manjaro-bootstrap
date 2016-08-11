@@ -192,7 +192,8 @@ main() {
     apps::nodejs-n
     apps::mongodb
     apps::phpstorm
-    apps::php56
+    apps::realsync
+    #apps::php56
 
     # Make some dirs
     mkdir -p "${HOME}/Screenshots"
