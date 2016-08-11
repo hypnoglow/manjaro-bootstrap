@@ -102,3 +102,15 @@ tweaks::disable_servises() {
 
 
 }
+
+tweaks::resolv() {
+    if grep -q "cname.s in.ngs.ru" /etc/resolv.conf; then
+        return 0
+    fi
+
+    # https://www.freebsd.org/cgi/man.cgi?query=resolvconf.conf
+    std::info "Add NGS domains to resolv.conf"
+    echo -e "#NGS\nsearch_domains=\"cname.s in.ngs.ru\"" | sudo tee -a /etc/resolvconf.conf 1>/dev/null
+    sudo resolvconf -u
+
+}

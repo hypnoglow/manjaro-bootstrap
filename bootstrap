@@ -181,6 +181,7 @@ main() {
     tweaks::switch_to_zsh
     tweaks::setup_lightdm_theme
     tweaks::setup_docker
+    tweaks::resolv
 
     # It's a bit broken now, so skip
     #tweaks::gtk_themes
@@ -196,6 +197,7 @@ main() {
     # Make some dirs
     mkdir -p "${HOME}/Screenshots"
     mkdir -p "${HOME}/go"
+    mkdir -p "${HOME}/ngs/sources"
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."
