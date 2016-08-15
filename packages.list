@@ -28,6 +28,8 @@
 *       atom-editor-bin             aur
 *       shellcheck
 *       docker
+job     php
+job     composer
 
 ### Web ###
 *       google-chrome               aur
