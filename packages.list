@@ -23,13 +23,21 @@
 *       sysstat
 
 ### Development ###
-*       go
-*       go-tools
 *       atom-editor-bin             aur
 *       shellcheck
 *       docker
+
+# go
+*       go
+*       go-tools
+
+# php
 job     php
 job     composer
+
+# rust
+desktop rust
+desktop cargo
 
 ### Web ###
 *       google-chrome               aur
