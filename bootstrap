@@ -200,6 +200,11 @@ main() {
     mkdir -p "${HOME}/go"
     mkdir -p "${HOME}/ngs/sources"
 
+    if [ "$(xdg-settings check default-web-browser google-chrome.desktop)" = "no" ]; then
+        std::info "Setting chrome as default browser"
+        xdg-settings set default-web-browser google-chrome.desktop
+    fi
+
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."
 }
