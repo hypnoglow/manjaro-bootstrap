@@ -25,7 +25,10 @@
 ### Development ###
 *       atom-editor-bin             aur
 *       shellcheck
+
+# docker
 *       docker
+*       docker-machine
 
 # go
 *       go
