@@ -7,7 +7,7 @@
 packages::install_all() {
     local profile="$1"
     if [ -z "${profile}" ]; then
-        echo >&2 "Cannot install custom packages: profile is not specified."
+        std::warning >&2 "Cannot install custom packages: profile is not specified."
         return 1
     fi
 
@@ -49,7 +49,7 @@ packages::install_one() {
     local src="$2"
     #echo "install ${package} from ${src}"
 
-    echo "Install '${package}'"
+    std::info "Install '${package}'"
     if [ "${src}" = "aur" ]; then
         yaourt -S "${package}" --noconfirm
     else
@@ -57,7 +57,7 @@ packages::install_one() {
     fi
 
     if [ $? -ne 0 ]; then
-        echo "Failed to install '${package}'" >&2
+        std::error "Failed to install '${package}'" >&2
         exit 1
     fi
 }
@@ -68,7 +68,7 @@ packages::need_to_install() {
     local user_profile="$3"
 
     if pacman -Q ${package_name} &>/dev/null ; then
-        echo "'${package_name}' is installed"
+        std::info "'${package_name}' is installed"
         return 1
     fi
 
@@ -81,7 +81,7 @@ packages::need_to_install() {
         # Inverted profile
         package_profile=${package_profile#!*}
         if [ "${user_profile}" = "${package_profile}" ]; then
-            echo "Skip package ${package_name}"
+            std::info "Skip package ${package_name}"
             return 1
         fi
 
@@ -91,7 +91,7 @@ packages::need_to_install() {
 
     # Normal profile
     if [ "${user_profile}" != "${package_profile}" ]; then
-        echo "Skip package ${package_name}"
+        std::info "Skip package ${package_name}"
         return 1
     fi
 
