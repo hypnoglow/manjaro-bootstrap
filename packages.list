@@ -26,9 +26,10 @@
 *       atom-editor-bin             aur
 *       shellcheck
 
-# docker
+# VMs, docker
 *       docker
 *       docker-machine
+*       vagrant
 
 # go
 *       go
