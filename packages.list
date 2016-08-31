@@ -27,6 +27,8 @@
 *       shellcheck
 
 # VMs, docker
+*       linux44-virtualbox-host-modules
+*       virtualbox
 *       docker
 *       docker-machine
 *       vagrant
