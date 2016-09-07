@@ -84,6 +84,25 @@ tweaks::setup_docker() {
     sudo systemctl restart docker
 }
 
+tweaks::setup_virtualbox() {
+    if [ ! -x "$(which vboxmanage 2>/dev/null)" ]; then
+        return 0
+    fi
+
+    if [ -e "/etc/modules-load.d/vbox.conf" ]; then
+        return 0
+    fi
+
+    std::info "Setup VirtualBox kernel modules autoload"
+    sudo cp ${self_dir}/sources/etc/modules-load.d/vbox.conf \
+            /etc/modules-load.d/vbox.conf
+
+    # Load modules for current session
+    sudo modprobe vboxnetadp
+    sudo modprobe vboxnetflt
+    sudo modprobe vboxpci
+}
+
 tweaks::disable_servises() {
     local -a services=(
         bluetooth.service
