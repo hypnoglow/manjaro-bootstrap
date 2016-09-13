@@ -38,12 +38,12 @@
 *       go-tools
 
 # php
-job     php
-job     composer
+job,desktop     php
+job,desktop     composer
 
 # rust
-desktop rust
-desktop cargo
+desktop     rust
+desktop     cargo
 
 ### Web ###
 *       google-chrome               aur
@@ -61,14 +61,12 @@ job     vivaldi-ffmpeg-codecs       aur
 *       ffcast                      aur
 
 ### Communication ###
-job     thunderbird
-job     psi
-job     psi-i18n
-job     telegram-desktop-bin        aur
-desktop telegram-desktop-bin        aur
-#job     skype
-job     slack-desktop               aur
-desktop slack-desktop               aur
+job            thunderbird
+job            psi
+job            psi-i18n
+job,desktop    telegram-desktop-bin        aur
+job            skype                       aur
+job,desktop    slack-desktop               aur
 
 # GTK
 gnome-themes-standard

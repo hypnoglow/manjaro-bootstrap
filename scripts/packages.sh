@@ -76,24 +76,36 @@ packages::need_to_install() {
         return 0
     fi
 
+    profilesArray=(${package_profile//,/ })
 
-    if [[ "${package_profile}" =~ ^\! ]]; then
-        # Inverted profile
-        package_profile=${package_profile#!*}
-        if [ "${user_profile}" = "${package_profile}" ]; then
-            std::info "Skip package ${package_name}"
-            return 1
+    local profile
+    local install=false
+    for profile in ${profilesArray[*]}; do
+        if [[ "${profile}" =~ ^\! ]]; then
+            # Inverted profile
+            profile=${profile#!*}
+            if [ "${user_profile}" = "${profile}" ]; then
+                continue
+            fi
+
+            install=true
+            break
+        else
+            # Normal profile
+            if [ "${user_profile}" != "${profile}" ]; then
+                continue
+            fi
+
+            install=true
+            break
         fi
+    done
 
-        #echo "Install ${package_name}"
+    if ${install} ; then
+        std::info "Install package ${package_name}"
         return 0
     fi
 
-    # Normal profile
-    if [ "${user_profile}" != "${package_profile}" ]; then
-        std::info "Skip package ${package_name}"
-        return 1
-    fi
-
-    return 0
+    std::info "Skip package ${package_name}"
+    return 1
 }
