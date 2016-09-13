@@ -24,20 +24,20 @@ packages::install_all() {
 
         # parse line
         local package_data=(${line})
-        local package_profile
+        local package_profiles
         local package_name
         local package_src
         if [ -z "${package_data[1]}" ]; then
-            package_profile="*"
+            package_profiles="*"
             package_name="${package_data[0]}"
         else
-            package_profile="${package_data[0]}"
+            package_profiles="${package_data[0]}"
             package_name="${package_data[1]}"
             package_src="${package_data[2]}"
         fi
 
         # install
-        if packages::need_to_install "${package_profile}" "${package_name}" "${profile}"; then
+        if packages::need_to_install "${package_profiles}" "${package_name}" "${profile}"; then
             packages::install_one "${package_name}" "${package_src}"
         fi
 
@@ -63,7 +63,7 @@ packages::install_one() {
 }
 
 packages::need_to_install() {
-    local package_profile="$1"
+    local package_profiles="$1"
     local package_name="$2"
     local user_profile="$3"
 
@@ -72,11 +72,11 @@ packages::need_to_install() {
         return 1
     fi
 
-    if [ "${package_profile}" = "*" ]; then
+    if [ "${package_profiles}" = "*" ]; then
         return 0
     fi
 
-    profilesArray=(${package_profile//,/ })
+    profilesArray=(${package_profiles//,/ })
 
     local profile
     local install=false
