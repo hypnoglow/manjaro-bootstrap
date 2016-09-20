@@ -33,6 +33,9 @@
 *       docker-machine
 *       vagrant
 
+# db
+*       mariadb-clients
+
 # go
 *       go
 *       go-tools
