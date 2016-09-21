@@ -82,6 +82,11 @@ apps::phpstorm() {
     ln -s ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
+apps::go-apps() {
+    go get -u github.com/msoap/go-carpet
+    # Usage: go-carpet -256colors | less -R
+}
+
 apps::php56() {
     if [ -x "$(which php56 2>/dev/null)" ]; then
         return 0
