@@ -133,3 +133,10 @@ tweaks::resolv() {
     sudo resolvconf -u
 
 }
+
+tweaks::default_web_browser() {
+    if [ "$(xdg-settings check default-web-browser google-chrome.desktop)" = "no" ]; then
+        std::info "Setting chrome as default browser"
+        xdg-settings set default-web-browser google-chrome.desktop
+    fi
+}
