@@ -82,11 +82,6 @@ apps::phpstorm() {
     ln -s ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
-apps::go-apps() {
-    go get -u github.com/msoap/go-carpet
-    # Usage: go-carpet -256colors | less -R
-}
-
 apps::php56() {
     if [ -x "$(which php56 2>/dev/null)" ]; then
         return 0
@@ -106,4 +101,25 @@ apps::php56() {
     cp /tmp/php-5.6.21/php.ini-development ~/apps/php-5.6.21/lib/php.ini
 
     ln -s ~/apps/php-5.6.21/bin/php ~/apps/bin/php56
+}
+
+apps::go-apps() {
+    go get -u github.com/msoap/go-carpet
+    # Usage: go-carpet -256colors | less -R
+
+    go get -u github.com/ivpusic/rerun
+    # Usage: rerun
+}
+
+apps::vagrant() {
+    if [ ! -x "$(which vagrant 2>/dev/null)" ]; then
+        return 0
+    fi
+
+    if vagrant plugin list | grep -q vagrant-share ; then
+        return 0
+    fi
+
+    std::info "Install vagrant plugin: vagrant-share"
+    vagrant plugin install vagrant-share
 }
