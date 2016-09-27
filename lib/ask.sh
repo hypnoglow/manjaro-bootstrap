@@ -25,7 +25,7 @@ ask::ask() {
 # If called in non-interactive mode, always return true.
 # Else return 0 or 1 based on answer.
 ask::interactive() {
-    if [ "$interactive" = false ]; then
+    if [ "${interactive-}" = false ]; then
         return 0
     fi
 

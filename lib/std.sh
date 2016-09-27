@@ -8,10 +8,10 @@
 # GLOBAL VARIABLES
 #
 
-[ -z "$_SELF" ]    && declare -g _SELF="Undefined"
-[ -z "$_VERSION" ] && declare -g _VERSION="0.0.0"
-[ -z "$_AUTHOR" ]  && declare -g _AUTHOR="John Doe"
-[ -z "$_CALLER" ]  && declare -g _CALLER="$0"
+[ -z "${_SELF-}" ]    && declare -g _SELF="Undefined"
+[ -z "${_VERSION-}" ] && declare -g _VERSION="0.0.0"
+[ -z "${_AUTHOR-}" ]  && declare -g _AUTHOR="John Doe"
+[ -z "${_CALLER-}" ]  && declare -g _CALLER="$0"
 
 # 16 Colors palette
 # Reminder:

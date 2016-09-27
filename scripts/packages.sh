@@ -27,13 +27,13 @@ packages::install_all() {
         local package_profiles
         local package_name
         local package_src
-        if [ -z "${package_data[1]}" ]; then
+        if [ -z "${package_data[1]-}" ]; then
             package_profiles="*"
             package_name="${package_data[0]}"
         else
             package_profiles="${package_data[0]}"
             package_name="${package_data[1]}"
-            package_src="${package_data[2]}"
+            package_src="${package_data[2]-}"
         fi
 
         # install
