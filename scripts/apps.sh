@@ -109,6 +109,9 @@ apps::go-apps() {
 
     go get -u github.com/ivpusic/rerun
     # Usage: rerun
+
+    go get -u github.com/alecthomas/gometalinter
+    gometalinter --install
 }
 
 apps::vagrant() {
