@@ -32,6 +32,7 @@
 *       virtualbox
 *       docker
 *       docker-machine
+*       docker-compose
 *       vagrant
 
 # db
