@@ -112,6 +112,8 @@ apps::go-apps() {
 
     go get -u github.com/alecthomas/gometalinter
     gometalinter --install
+
+    go get -u github.com/kardianos/govendor
 }
 
 apps::vagrant() {
