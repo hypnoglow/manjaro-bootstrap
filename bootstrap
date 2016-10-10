@@ -113,7 +113,9 @@ check_new_configs_after_update() {
 
     local new_config
     local old_config
-    local new_configs=$(find /etc/ ! -readable -prune -o -type f \
+    local new_configs
+
+    new_configs=$(find /etc/ ! -readable -prune -o -type f \
         -name "*.pacnew" -print)
 
     for new_config in ${new_configs} ; do
