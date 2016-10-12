@@ -67,10 +67,6 @@ tweaks::setup_docker() {
         sudo gpasswd --add ${USER} docker
     fi
 
-    if [ "${arg_profile}" != "job" ] ; then
-        return 0
-    fi
-
     local filename="override.conf"
 
     if [ -f "/etc/systemd/system/docker.service.d/${filename}" ] ; then
