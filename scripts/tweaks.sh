@@ -71,14 +71,16 @@ tweaks::setup_docker() {
         return 0
     fi
 
-    if [ -f "/etc/systemd/system/docker.service.d/ngs.conf" ] ; then
+    local filename="override.conf"
+
+    if [ -f "/etc/systemd/system/docker.service.d/${filename}" ] ; then
         return 0
     fi
 
     std::info "Setup docker"
     sudo mkdir -p /etc/systemd/system/docker.service.d/
-    sudo cp ${self_dir}/sources/etc/systemd/system/docker.service.d/ngs.conf \
-            /etc/systemd/system/docker.service.d/ngs.conf
+    sudo cp "${self_dir}/sources/etc/systemd/system/docker.service.d/${filename}" \
+            "/etc/systemd/system/docker.service.d/${filename}"
 
     sudo systemctl daemon-reload
     sudo systemctl restart docker
