@@ -54,6 +54,8 @@ desktop     cargo
 ### Web ###
 *       google-chrome               aur
 *       firefox
+*       firefox-i18n-ru
+*       firefox-developer           aur
 job     vivaldi                     aur
 job     vivaldi-ffmpeg-codecs       aur
 !vm     dropbox
