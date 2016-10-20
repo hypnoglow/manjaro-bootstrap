@@ -199,7 +199,7 @@ main() {
     apps::mongodb
     apps::phpstorm
     apps::realsync
-    #apps::php56
+    apps::go-apps
 
     # Make some dirs
     mkdir -p "${HOME}/Screenshots"

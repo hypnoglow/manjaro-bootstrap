@@ -104,6 +104,22 @@ apps::php56() {
 }
 
 apps::go-apps() {
+    local apps
+    apps=(
+        github.com/hypnoglow/gomuche
+    )
+
+    for app in "${apps[@]}"; do
+        if [ -d "${GOPATH}/src/${app}" ] && [ -n "$(which ${app##*/} 2>/dev/null)" ]; then
+            continue;
+        fi
+
+        std::info "Installing \"${app}\" with go get..."
+        go get -v -uq "$app"
+    done
+
+    return 0
+
     go get -u github.com/msoap/go-carpet
     # Usage: go-carpet -256colors | less -R
 
