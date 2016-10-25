@@ -1,100 +1,103 @@
-### Basic ###
-*       bash-completion
-*       xkb-switch-git              aur
-*       zsh
-*       zsh-completions
-*       feh
-*       vim
-*       xclip
-*       tmux
-*       urxvt-autocomplete-all-the-things-git    aur
-*       xdotool
-*       jq
-*       cdiff                       aur
-*       icdiff                      aur
-*       brandr
-*       ripgrep
-*       rofi
-*       dotbro                      aur
+#
+# Basic
+#
 
-# Utils
-*       siege
-*       keybase-bin                 aur
+*              bash-completion
+*              xkb-switch-git              aur
+*              zsh
+*              zsh-completions
+*              feh
+*              vim
+*              xclip
+*              tmux
+*              urxvt-autocomplete-all-the-things-git    aur
+*              xdotool
+*              jq
+*              cdiff                       aur
+*              icdiff                      aur
+*              brandr
+*              ripgrep
+*              rofi
+*              dotbro                      aur
+*              siege
+*              keybase-bin                 aur
 
 # i3 specific packages
-*       i3blocks                    aur
-*       sysstat
+*              i3blocks                    aur
+*              sysstat
 
-### Development ###
-*       atom-editor-bin             aur
-*       shellcheck
+# Screenshot and gif tools
+*              maim
+*              slop
+*              gifsicle
+*              ffcast                      aur
+
+#
+# Development
+#
+
+*               atom-editor-bin            aur
+*               shellcheck
 
 # VMs, docker
-*       linux44-virtualbox-host-modules
-*       virtualbox
-*       docker
-*       docker-machine
-*       docker-compose
-*       vagrant
+*               linux44-virtualbox-host-modules
+*               virtualbox
+*               docker
+*               docker-machine
+*               docker-compose
+*               vagrant
 
 # db
-*       mariadb-clients
+*               mariadb-clients
 
-# go
-*       go
-*       go-tools
-
-# php
+*               go
+*               go-tools
 job,desktop     php
 job,desktop     composer
+desktop         rust
+desktop         cargo
 
-# rust
-desktop     rust
-desktop     cargo
+#
+# Web & communications
+#
 
-### Web ###
-*       google-chrome               aur
-*       firefox
-*       firefox-i18n-ru
-*       firefox-developer           aur
-job     vivaldi                     aur
-job     vivaldi-ffmpeg-codecs       aur
-!vm     dropbox
-!vm     dropbox-cli                 aur
+*               google-chrome              aur
+*               firefox
+*               firefox-i18n-ru
+*               firefox-developer          aur
+job,desktop     vivaldi                    aur
+job,desktop     vivaldi-ffmpeg-codecs      aur
+!vm             dropbox
+!vm             dropbox-cli                aur
+
+job             thunderbird
+job             psi
+job             psi-i18n
+job,desktop     telegram-desktop-bin       aur
+job             skype                      aur
+job,desktop     slack-desktop              aur
 
 
-### Screenshot and gif tools ##
-*       maim
-*       slop
-*       gifsicle
-*       ffcast                      aur
+#
+# UI
+#
 
-### Communication ###
-job            thunderbird
-job            psi
-job            psi-i18n
-job,desktop    telegram-desktop-bin        aur
-job            skype                       aur
-job,desktop    slack-desktop               aur
-
-# GTK
-gnome-themes-standard
-arc-themes
-
-vertex-maia-icon-theme
-xcursor-maia
+*              gnome-themes-standard
+*              arc-themes
+*              vertex-maia-icon-theme
+*              xcursor-maia
 
 # LightDM
-!vm lightdm-webkit2-greeter              aur
-!vm lightdm-webkit-theme-material-git    aur
+!vm            lightdm-webkit2-greeter              aur
+!vm            lightdm-webkit-theme-material-git    aur
 
-### Fonts ###
+# Fonts
 *       xorg-xlsfonts
 *       xorg-xfontsel
 *       adobe-source-code-pro-fonts
 *       adobe-source-sans-pro-fonts
-*       ttf-iosevka                 aur
-*       ttf-iosevka-term            aur
-*       tamzen-font-git             aur
+*       ttf-iosevka                        aur
+*       ttf-iosevka-term                   aur
+*       tamzen-font-git                    aur
 # FontAwesome for i3bar icons
-*       ttf-font-awesome            aur
+*       ttf-font-awesome                   aur
