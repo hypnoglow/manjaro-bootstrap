@@ -21,6 +21,7 @@
 *              dotbro                      aur
 *              siege
 *              keybase-bin                 aur
+*              keynav                      aur
 
 # i3 specific packages
 *              i3blocks                    aur
@@ -90,6 +91,7 @@ job,desktop     slack-desktop              aur
 # LightDM
 !vm            lightdm-webkit2-greeter              aur
 !vm            lightdm-webkit-theme-material-git    aur
+desktop        lightdm-webkit-theme-aether          aur
 
 # Fonts
 *       xorg-xlsfonts
