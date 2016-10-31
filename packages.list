@@ -39,6 +39,7 @@
 
 *               atom-editor-bin            aur
 *               shellcheck
+*               postman-bin                aur
 
 # VMs, docker
 *               linux44-virtualbox-host-modules
