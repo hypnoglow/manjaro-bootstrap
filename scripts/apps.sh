@@ -107,6 +107,7 @@ apps::go-apps() {
     local apps
     apps=(
         github.com/hypnoglow/gomuche
+        github.com/sqs/goreturns
     )
 
     for app in "${apps[@]}"; do
@@ -115,7 +116,7 @@ apps::go-apps() {
         fi
 
         std::info "Installing \"${app}\" with go get..."
-        go get -v -uq "$app"
+        go get -v -u "$app"
     done
 
     return 0
