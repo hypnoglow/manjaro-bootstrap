@@ -104,6 +104,9 @@ apps::php56() {
 }
 
 apps::go-apps() {
+    GOPATH=${GOPATH:-$HOME/go}
+    export GOPATH
+
     local apps
     apps=(
         github.com/hypnoglow/gomuche

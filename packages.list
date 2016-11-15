@@ -85,13 +85,13 @@ job,desktop     slack-desktop              aur
 #
 
 *              gnome-themes-standard
-*              arc-themes
+desktop        arc-themes-maia
 *              vertex-maia-icon-theme
 *              xcursor-maia
 
 # LightDM
-!vm            lightdm-webkit2-greeter              aur
-!vm            lightdm-webkit-theme-material-git    aur
+job,desktop    lightdm-webkit2-greeter              aur
+job            lightdm-webkit-theme-material-git    aur
 desktop        lightdm-webkit-theme-aether          aur
 
 # Fonts

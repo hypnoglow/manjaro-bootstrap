@@ -192,19 +192,18 @@ main() {
     # It's a bit broken now, so skip
     #tweaks::gtk_themes
 
-    # Install additional software (not from arch repos)
+    # Make some dirs
+    mkdir -p "${HOME}/Screenshots"
+    mkdir -p "${HOME}/go"
+    mkdir -p "${HOME}/ngs/sources"
 
+    # Install additional software (not from arch repos)
     mkdir -p "${HOME}/apps/bin"
     apps::nodejs-n
     apps::mongodb
     apps::phpstorm
     apps::realsync
     apps::go-apps
-
-    # Make some dirs
-    mkdir -p "${HOME}/Screenshots"
-    mkdir -p "${HOME}/go"
-    mkdir -p "${HOME}/ngs/sources"
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."

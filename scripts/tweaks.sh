@@ -41,7 +41,7 @@ tweaks::setup_lightdm_theme() {
         echo "Icon=/var/lib/AccountsService/icons/${USER}" | sudo tee -a /var/lib/AccountsService/users/hypnoglow 1>/dev/null
     fi
 
-    if [ "${arg_profile}" != "desktop" ]; then
+    if [ "${arg_profile}" != "desktop" ] || [ "${arg_profile}" != "job" ]; then
         return 0
     fi
 
