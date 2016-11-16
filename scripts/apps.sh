@@ -110,7 +110,10 @@ apps::go-apps() {
     local apps
     apps=(
         github.com/hypnoglow/gomuche
+        github.com/alecthomas/gometalinter
         github.com/sqs/goreturns
+        github.com/ivpusic/rerun
+        github.com/msoap/go-carpet
     )
 
     for app in "${apps[@]}"; do
@@ -122,16 +125,10 @@ apps::go-apps() {
         go get -v -u "$app"
     done
 
+    # Post install commands
+    $GOPATH/bin/gometalinter --install
+
     return 0
-
-    go get -u github.com/msoap/go-carpet
-    # Usage: go-carpet -256colors | less -R
-
-    go get -u github.com/ivpusic/rerun
-    # Usage: rerun
-
-    go get -u github.com/alecthomas/gometalinter
-    gometalinter --install
 
     go get -u github.com/kardianos/govendor
 }
