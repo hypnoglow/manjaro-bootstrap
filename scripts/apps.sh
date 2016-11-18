@@ -117,16 +117,19 @@ apps::go-apps() {
     )
 
     for app in "${apps[@]}"; do
-        if [ -d "${GOPATH}/src/${app}" ] && [ -n "$(which ${app##*/} 2>/dev/null)" ]; then
+        name="${app##*/}"
+        if [ -d "${GOPATH}/src/${app}" ] && [ -n "$(which $name 2>/dev/null)" ]; then
             continue;
         fi
 
         std::info "Installing \"${app}\" with go get..."
         go get -v -u "$app"
-    done
 
-    # Post install commands
-    $GOPATH/bin/gometalinter --install
+        # a bit dirty
+        if [ "$name" = "gometalinter" ]; then
+            $GOPATH/bin/gometalinter --install
+        fi
+    done
 
     return 0
 
