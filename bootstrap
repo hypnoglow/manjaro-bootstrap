@@ -200,6 +200,7 @@ main() {
     # Install additional software (not from arch repos)
     mkdir -p "${HOME}/apps/bin"
     apps::nodejs-n
+    apps::npm-global-packages
     apps::mongodb
     apps::phpstorm
     apps::realsync

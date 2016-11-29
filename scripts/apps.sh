@@ -22,9 +22,28 @@ apps::nodejs-n() {
     export N_PREFIX="${HOME}/apps/n"
     export PATH="$PATH:$N_PREFIX/bin"
     n latest
-    npm install -g \
-        karma-cli \
+}
+
+apps::npm-global-packages() {
+    if [ ! -x "$(which npm 2> /dev/null)" ]; then
+        return 0
+    fi
+
+    local packages
+    packages=(
+        karma-cli
         nodemon
+        create-react-app
+    )
+
+    for package in "${packages[@]}"; do
+        if [ -e "${HOME}/apps/n/lib/node_modules/${package}" ]; then
+            continue;
+        fi
+
+        std::info "Installing \"${package}\" with \"npm install -g\" ..."
+        npm install -g "${package}"
+    done
 }
 
 apps::mongodb() {
