@@ -129,6 +129,7 @@ apps::go-apps() {
     local apps
     apps=(
         github.com/hypnoglow/gomuche
+        github.com/hypnoglow/i3x
         github.com/alecthomas/gometalinter
         github.com/sqs/goreturns
         github.com/ivpusic/rerun
