@@ -47,21 +47,22 @@ apps::npm-global-packages() {
 }
 
 apps::mongodb() {
-    if [ -d "${HOME}/apps/mongodb-linux-x86_64-3.2.4/" ]; then
+    local version="3.4.1"
+    if [ -d "${HOME}/apps/mongodb-linux-x86_64-${version}/" ]; then
         return 0
     fi
 
-    if ! ask::interactive "Install MongoDB 3.2.4 ?"; then
+    if ! ask::interactive "Install MongoDB ${version} ?"; then
          return 0
     fi
 
-    echo "Installing MongoDB 3.2.4"
-    cd Downloads
-    wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.2.4.tgz
-    tar xzf mongodb-linux-x86_64-3.2.4.tgz
-    mv mongodb-linux-x86_64-3.2.4 ~/apps/
-    ln -s ~/apps/mongodb-linux-x86_64-3.2.4/bin/mongod ~/apps/bin/mongod
-    ln -s ~/apps/mongodb-linux-x86_64-3.2.4/bin/mongo ~/apps/bin/mongo
+    std::info "Installing MongoDB ${version}"
+    cd ${HOME}/Downloads
+    wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${version}.tgz
+    tar xzf mongodb-linux-x86_64-${version}.tgz
+    mv mongodb-linux-x86_64-${version} ~/apps/
+    ln -s ~/apps/mongodb-linux-x86_64-${version}/bin/mongod ~/apps/bin/mongod
+    ln -s ~/apps/mongodb-linux-x86_64-${version}/bin/mongo ~/apps/bin/mongo
 }
 
 apps::realsync() {
@@ -84,7 +85,7 @@ apps::phpstorm() {
         return 0
     fi
 
-    local version="2016.3"
+    local version="2016.3.2"
 
     if ! ask::interactive "Install PhpStorm ${version} ?"; then
          return 0
