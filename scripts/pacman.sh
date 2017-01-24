@@ -23,7 +23,7 @@ pacman::update_keys() {
 }
 
 pacman::update_mirrors() {
-    if grep "Location" /etc/pacman.d/mirrorlist | head -n1 | grep -q "Russia"
+    if grep "Country" /etc/pacman.d/mirrorlist | head -n1 | grep -q "Russia"
     then
         return 0
     fi
