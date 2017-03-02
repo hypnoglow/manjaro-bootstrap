@@ -41,14 +41,17 @@ tweaks::setup_lightdm_theme() {
         echo "Icon=/var/lib/AccountsService/icons/${USER}" | sudo tee -a /var/lib/AccountsService/users/hypnoglow 1>/dev/null
     fi
 
-    if [ "${arg_profile}" != "desktop" ] || [ "${arg_profile}" != "job" ]; then
+    if [ "${arg_profile}" != "desktop" ] && [ "${arg_profile}" != "job" ]; then
         return 0
     fi
 
-    if ! pacman -Qs lightdm-webkit-theme-material-git &>/dev/null ; then
-        std::warning "Package 'lightdm-webkit-theme-material-git' not found: cannot apply lightdm theme tweaks"
+    if ! pacman -Qs lightdm-webkit-theme-material-git &>/dev/null && \
+       ! pacman -Qs lightdm-webkit-theme-aether &>/dev/null; then
+        std::warning "LightDM webkit theme not found: cannot apply lightdm theme tweaks"
         return 0
     fi
+
+    # webkit theme is installed, so switch to webkit2 greeter if need.
 
     if grep -Fxq "greeter-session=lightdm-gtk-greeter" /etc/lightdm/lightdm.conf; then
         std::info "Tweak LightDM greeter"
@@ -60,9 +63,12 @@ tweaks::setup_lightdm_theme() {
         cat /etc/lightdm/lightdm.conf | sed s/"#greeter-session=example-gtk-gnome"/"greeter-session=lightdm-webkit2-greeter"/ | sudo tee /etc/lightdm/lightdm.conf > /dev/null
     fi
 
-    if grep -Fxq "webkit-theme = antergos" /etc/lightdm/lightdm-webkit2-greeter.conf; then
+    if pacman -Qs lightdm-webkit-theme-aether &>/dev/null; then
+        std::info "Set webkit theme \"aether\" for lightdm-webkit2-greeter"
+        cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"^webkit_theme\s*=\s*antergos"/"webkit_theme = lightdm-webkit-theme-aether"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
+    elif pacman -Qs lightdm-webkit-theme-material-git &>/dev/null; then
         std::info "Set webkit theme \"material\" for lightdm-webkit2-greeter"
-        cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"webkit-theme = antergos"/"webkit-theme = material"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
+        cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"webkit_theme\s*=\s*antergos"/"webkit_theme = material"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
     fi
 }
 

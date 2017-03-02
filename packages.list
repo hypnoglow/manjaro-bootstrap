@@ -67,8 +67,9 @@ desktop         cargo
 *               firefox
 *               firefox-i18n-ru
 *               firefox-developer          aur
-job,desktop     vivaldi                    aur
-job,desktop     vivaldi-ffmpeg-codecs      aur
+desktop         opera
+#job,desktop     vivaldi                    aur
+#job,desktop     vivaldi-ffmpeg-codecs      aur
 !vm             dropbox
 !vm             dropbox-cli                aur
 
@@ -91,7 +92,7 @@ desktop        arc-themes-maia
 
 # LightDM
 job,desktop    lightdm-webkit2-greeter              aur
-job            lightdm-webkit-theme-material-git    aur
+#job            lightdm-webkit-theme-material-git    aur
 desktop        lightdm-webkit-theme-aether          aur
 
 # Fonts
