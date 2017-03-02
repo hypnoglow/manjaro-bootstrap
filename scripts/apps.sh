@@ -102,6 +102,28 @@ apps::phpstorm() {
     ln -s ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
+apps::gogland() {
+    if [ -x "$(which gogland 2>/dev/null)" ]; then
+        return 0
+    fi
+
+    local version="163.12024.32"
+
+    if ! ask::interactive "Install Gogland ${version} ?"; then
+         return 0
+    fi
+
+    ts=$(date +"%s")
+    dir="/tmp/gogland-$ts"
+    mkdir $dir
+    cd ${HOME}/Downloads
+    wget https://download.jetbrains.com/go/gogland-${version}.tar.gz
+    tar xzf gogland-${version}.tar.gz -C $dir
+    gogland_dir="$dir/$(ls $dir)"
+    mv ${gogland_dir}  ~/apps/gogland-${version}
+    ln -s ~/apps/gogland-${version}/bin/gogland.sh ~/apps/bin/gogland
+}
+
 apps::php56() {
     if [ -x "$(which php56 2>/dev/null)" ]; then
         return 0
