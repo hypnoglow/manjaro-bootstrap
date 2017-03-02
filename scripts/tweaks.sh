@@ -124,7 +124,7 @@ tweaks::disable_servises() {
 
 }
 
-tweaks::resolv() {
+tweaks::ngs_resolv() {
     if grep -q "cname.s in.ngs.ru" /etc/resolv.conf; then
         return 0
     fi

@@ -186,7 +186,7 @@ main() {
     tweaks::setup_lightdm_theme
     tweaks::setup_virtualbox
     tweaks::setup_docker
-    tweaks::resolv
+    # tweaks::ngs_resolv
     # tweaks::default_web_browser
 
     # It's a bit broken now, so skip
@@ -195,7 +195,10 @@ main() {
     # Make some dirs
     mkdir -p "${HOME}/Screenshots"
     mkdir -p "${HOME}/go"
-    mkdir -p "${HOME}/ngs/sources"
+
+    # NGS (deprecated)
+    # mkdir -p "${HOME}/ngs/sources"
+    # mkdir -p "${HOME}/ngs/bin"
 
     # Install additional software (not from arch repos)
     mkdir -p "${HOME}/apps/bin"
