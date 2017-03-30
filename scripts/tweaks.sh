@@ -63,12 +63,15 @@ tweaks::setup_lightdm_theme() {
         cat /etc/lightdm/lightdm.conf | sed s/"#greeter-session=example-gtk-gnome"/"greeter-session=lightdm-webkit2-greeter"/ | sudo tee /etc/lightdm/lightdm.conf > /dev/null
     fi
 
-    if pacman -Qs lightdm-webkit-theme-aether &>/dev/null; then
-        std::info "Set webkit theme \"aether\" for lightdm-webkit2-greeter"
-        cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"^webkit_theme\s*=\s*antergos"/"webkit_theme = lightdm-webkit-theme-aether"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
-    elif pacman -Qs lightdm-webkit-theme-material-git &>/dev/null; then
-        std::info "Set webkit theme \"material\" for lightdm-webkit2-greeter"
-        cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"webkit_theme\s*=\s*antergos"/"webkit_theme = material"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
+    # if theme is not set
+    if grep -E "^webkit_theme\s*=\s*antergos" /etc/lightdm/lightdm-webkit2-greeter.conf; then
+        if pacman -Qs lightdm-webkit-theme-aether &>/dev/null; then
+            std::info "Set webkit theme \"aether\" for lightdm-webkit2-greeter"
+            cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"^webkit_theme\s*=\s*antergos"/"webkit_theme = lightdm-webkit-theme-aether"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
+        elif pacman -Qs lightdm-webkit-theme-material-git &>/dev/null; then
+            std::info "Set webkit theme \"material\" for lightdm-webkit2-greeter"
+            cat /etc/lightdm/lightdm-webkit2-greeter.conf | sed s/"webkit_theme\s*=\s*antergos"/"webkit_theme = material"/ | sudo tee /etc/lightdm/lightdm-webkit2-greeter.conf > /dev/null
+        fi
     fi
 }
 
@@ -86,7 +89,7 @@ tweaks::setup_docker() {
     std::info "Setup docker"
     sudo mkdir -p /etc/systemd/system/docker.service.d/
     sudo cp "${self_dir}/sources/etc/systemd/system/docker.service.d/${filename}" \
-            "/etc/systemd/system/docker.service.d/${filename}"
+    "/etc/systemd/system/docker.service.d/${filename}"
 
     sudo systemctl daemon-reload
     sudo systemctl restart docker
@@ -103,7 +106,7 @@ tweaks::setup_virtualbox() {
 
     std::info "Setup VirtualBox kernel modules autoload"
     sudo cp ${self_dir}/sources/etc/modules-load.d/vbox.conf \
-            /etc/modules-load.d/vbox.conf
+    /etc/modules-load.d/vbox.conf
 
     # Load modules for current session
     sudo modprobe vboxnetadp
@@ -113,8 +116,8 @@ tweaks::setup_virtualbox() {
 
 tweaks::disable_servises() {
     local -a services=(
-        bluetooth.service
-        ModemManager.service
+    bluetooth.service
+    ModemManager.service
     )
 
     for service in "${services[@]}" ; do
