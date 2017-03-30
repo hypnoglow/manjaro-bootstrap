@@ -85,7 +85,7 @@ apps::phpstorm() {
         return 0
     fi
 
-    local version="2016.3.2"
+    local version="2017.1"
 
     if ! ask::interactive "Install PhpStorm ${version} ?"; then
          return 0
@@ -99,7 +99,7 @@ apps::phpstorm() {
     tar xzf PhpStorm-${version}.tar.gz -C $dir
     phpstorm_dir="$dir/$(ls $dir)"
     mv ${phpstorm_dir}  ~/apps/phpstorm-${version}
-    ln -s ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
+    ln -sf ~/apps/phpstorm-${version}/bin/phpstorm.sh ~/apps/bin/phpstorm
 }
 
 apps::gogland() {
@@ -107,7 +107,7 @@ apps::gogland() {
         return 0
     fi
 
-    local version="163.12024.32"
+    local version="171.3780.106"
 
     if ! ask::interactive "Install Gogland ${version} ?"; then
          return 0
@@ -121,7 +121,7 @@ apps::gogland() {
     tar xzf gogland-${version}.tar.gz -C $dir
     gogland_dir="$dir/$(ls $dir)"
     mv ${gogland_dir}  ~/apps/gogland-${version}
-    ln -s ~/apps/gogland-${version}/bin/gogland.sh ~/apps/bin/gogland
+    ln -sf ~/apps/gogland-${version}/bin/gogland.sh ~/apps/bin/gogland
 }
 
 apps::php56() {
