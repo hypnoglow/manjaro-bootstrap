@@ -216,7 +216,7 @@ main() {
     apps::npm-global-packages
     apps::mongodb
     apps::phpstorm
-    apps::gogland
+    # apps::gogland
     apps::realsync
     apps::go-apps
 
