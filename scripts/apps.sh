@@ -85,7 +85,7 @@ apps::phpstorm() {
         return 0
     fi
 
-    local version="2017.1"
+    local version="2017.1.4"
 
     if ! ask::interactive "Install PhpStorm ${version} ?"; then
          return 0
@@ -107,7 +107,7 @@ apps::gogland() {
         return 0
     fi
 
-    local version="171.3780.106"
+    local version="171.4424.55"
 
     if ! ask::interactive "Install Gogland ${version} ?"; then
          return 0
