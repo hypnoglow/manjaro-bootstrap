@@ -52,6 +52,7 @@
 
 # db
 *               mariadb-clients
+#desktop        mongodb-compass            aur
 
 *               go
 *               go-tools
@@ -106,3 +107,5 @@ desktop        lightdm-webkit-theme-aether          aur
 *       tamzen-font-git                    aur
 # FontAwesome for i3bar icons
 *       ttf-font-awesome                   aur
+*       ttf-fira-code                      aur
+*       otf-fira-code                      aur
