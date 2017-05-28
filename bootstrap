@@ -5,16 +5,18 @@ set -euo pipefail
 print_usage() {
     cat <<EOF
 Usage:
-    $_CALLER [-k] <profile>
-    $_CALLER [-k] {default,vm,job,laptop}
+  $_CALLER <profile>
+  $_CALLER [-k] [-m] {default,desktop,vm,job,laptop}
 
--k|--pacman-keys        Update pacman keys. This should be used if you have just
-                        installed Manjaro using quite old ISO image or if  you
-                        are experiencing problems with system update because of
-                        broken GPG keys.
--h|--help               Show help.
-<profile>               Workstation profile, affects some tweaks and set of
-                        custom packages. Available profiles:
+Options:
+  -k | --pacman-keys      Update pacman keys. This should be used if you have just
+                          installed Manjaro using quite old ISO image or if  you
+                          are experiencing problems with system update because of
+                          broken GPG keys.
+  -m | --pacman-mirrors   Update pacman mirrors.
+  -h | --help             Show help.
+  <profile>               Workstation profile, affects some tweaks and set of
+                          custom packages. Available profiles:
                             default - basic stuff
                             desktop - main workstation,
                             vm      - virtual machine,
@@ -45,6 +47,7 @@ preload() {
 
 parse_arguments() {
     declare -g arg_update_keys=false
+    declare -g arg_update_mirrors=false
     declare -g arg_profile=""
 
     while [[ $# -gt 0 ]] ; do
@@ -55,6 +58,9 @@ parse_arguments() {
             ;;
             -k|--pacman-keys)
                 arg_update_keys=true
+            ;;
+            -m|--pacman-mirrors)
+                arg_update_mirrors=true
             ;;
             -*)
                 std::error "Unknown argument: $1"
@@ -155,6 +161,7 @@ main() {
     std::info "Bootstrap profile: ${_COLOR_YELLOW}${arg_profile}${_COLOR_RESET}"
 
     # First of all, update system.
+
     # Watch over the output - there may be needs to manually update config files
     # (like when you see "/etc/foo.conf is installed as /etc/foo.conf.pacnew").
     # This script handles such situations after update is done,
@@ -165,8 +172,11 @@ main() {
         pacman::update_keys
     fi
 
+    if [ ${arg_update_mirrors} = true ]; then
+        pacman::update_mirrors
+    fi
+
     pacman::set_color
-    pacman::update_mirrors
     pacman::update_system
 
     # Afterwards, install packages
