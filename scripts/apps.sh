@@ -34,6 +34,13 @@ apps::npm-global-packages() {
         karma-cli
         nodemon
         create-react-app
+        gulp-cli
+
+        eslint
+        eslint-plugin-react
+
+        webpack
+        webpack-dev-server
     )
 
     for package in "${packages[@]}"; do
