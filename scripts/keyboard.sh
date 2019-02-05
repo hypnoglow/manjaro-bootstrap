@@ -18,6 +18,7 @@ keyboard::set() {
 
 keyboard::need() {
     # Remove junk in /etc/X11/xorg.conf.d/90-mhwd.conf
+    if [ -r "/etc/X11/xorg.conf.d/90-mhwd.conf" ]; then
     local mhwd_file="$(readlink -e "/etc/X11/xorg.conf.d/90-mhwd.conf")"
     if [ "$(grep -c "Section \"InputClass\"" ${mhwd_file})" = "1" ]
     then
@@ -28,6 +29,7 @@ keyboard::need() {
         local to=${grepTo%*:*}
         sudo mv "${mhwd_file}" "${mhwd_file}.bak"
         sed "${from},${to}d" "${mhwd_file}.bak" | sudo tee "${mhwd_file}" > /dev/null
+    fi
     fi
 
     #if localectl status | grep -q "X11 Layout: us,ru"

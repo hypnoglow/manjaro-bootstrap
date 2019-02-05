@@ -67,7 +67,7 @@ parse_arguments() {
                 print_usage
                 exit 1
             ;;
-            default|vm|job|laptop|desktop)
+            default|vm|job|laptop|desktop|castor)
                 arg_profile=$1
                 break
             ;;
@@ -87,6 +87,10 @@ parse_arguments() {
                 arg_profile="laptop"
                 break
             ;;
+            c)
+		arg_profile="castor"
+		break
+	    ;;
             *)
                 std::error "Unknown workstation profile."
                 print_usage
@@ -121,8 +125,13 @@ check_new_configs_after_update() {
     local old_config
     local new_configs
 
-    new_configs=$(find /etc/ ! -readable -prune -o -type f \
-        -name "*.pacnew" -print)
+    declare -a new_configs
+    new_configs=($(find /etc/ ! -readable -prune -o -type f \
+	    -name "*.pacnew" -print))
+    if [ ${#new_configs[@]} -eq 0 ]; then
+        std::info "No *.pacnew files found after update"
+	return 0
+    fi
 
     for new_config in ${new_configs} ; do
         old_config=${new_config%*.pacnew}
@@ -190,13 +199,12 @@ main() {
     locale::set
     keyboard::set
 
-    tweaks::disable_servises
+    # tweaks::disable_servises
     tweaks::increase_inotify
     tweaks::switch_to_zsh
-    tweaks::setup_lightdm_theme
-    tweaks::setup_virtualbox
-    tweaks::setup_docker
-    # tweaks::ngs_resolv
+    # tweaks::setup_lightdm_theme
+    # tweaks::setup_virtualbox
+    # tweaks::setup_docker
     # tweaks::default_web_browser
 
     # It's a bit broken now, so skip
@@ -206,19 +214,15 @@ main() {
     mkdir -p "${HOME}/Screenshots"
     mkdir -p "${HOME}/go"
 
-    # NGS (deprecated)
-    # mkdir -p "${HOME}/ngs/sources"
-    # mkdir -p "${HOME}/ngs/bin"
-
     # Install additional software (not from arch repos)
-    mkdir -p "${HOME}/apps/bin"
-    apps::nodejs-n
-    apps::npm-global-packages
-    apps::mongodb
-    apps::phpstorm
+    # mkdir -p "${HOME}/apps/bin"
+    # apps::nodejs-n
+    # apps::npm-global-packages
+    # apps::mongodb
+    # apps::phpstorm
     # apps::gogland
-    apps::realsync
-    apps::go-apps
+    # apps::realsync
+    # apps::go-apps
 
     std::info "Done bootstrapping!"
     std::info "Now you may want to install your dotfiles if you haven't done it yet."
